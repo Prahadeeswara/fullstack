@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-module.exports = mongoose.connect('mongodb://localhost:27017/todolist', {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
+const uri = process.env.MONGODB_URI;
+
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 })
 .then(() => {
     console.log('db connected....');
@@ -10,5 +13,3 @@ module.exports = mongoose.connect('mongodb://localhost:27017/todolist', {
 .catch(err => {
     console.log(`error in db : ${err}`);
 });
-
-
